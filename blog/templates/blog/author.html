@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>Create Author</h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>Name</label>
+        <input type="text" name="name">
+
+        <label>Email</label>
+        <input type="email" name="email">
+
+        <label>Bio</label>
+        <textarea name="bio"></textarea>
+
+        <div class="button-group">
+            <button type="submit">
+                Save Author
+            </button>
+
+            <a href="/" class="back-btn">
+                Back
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>Create Category</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Category Name</label>
+        <input type="text" name="name" placeholder="Enter category name" required>
+
+        <div class="button-group">
+
+            <button type="submit">
+                Save Category
+            </button>
+
+            <a href="/" class="back-btn">
+                Back
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

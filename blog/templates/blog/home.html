@@ -1,0 +1,86 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Welcome Banner --><div class="hero-banner">
+    <img src="{% static 'images/ChatGPT Image Jun 26, 2026, 10_58_12 PM.png' %}" alt="Welcome Banner">
+
+    <a href="{% url 'add_blog' %}" class="hero-btn">
+        Upload Blog Now
+    </a>
+</div>
+ 
+<!-- Site Heading -->
+<div class="hero">
+    <h1>🎀 Latest Blogs 🎀</h1>
+    <p>Read, Learn and Share Knowledge</p>
+</div>
+
+<!-- Search Box -->
+<form method="GET" class="search-box">
+    <input
+        type="text"
+        name="q"
+        placeholder="Search blogs..."
+    >
+
+    <button type="submit">
+        Search
+    </button>
+</form>
+
+<!-- Blog Grid -->
+<div class="blog-grid">
+
+    {% for blog in blogs %}
+
+    <div class="blog-card">
+        <p>❤️ {{ blog.likes }} Likes</p>
+        <a href="/like/{{ blog.id }}/"
+           class="heart-btn {% if blog.liked %}red{% else %}white{% endif %}">
+            ♥
+        </a>
+
+        <h2>{{ blog.title }}</h2>
+
+        {% if blog.image %}
+            <img src="{{ blog.image.url }}"
+                 alt="{{ blog.title }}">
+        {% endif %}
+
+        <p class="author">
+            <strong>Author:</strong>
+            {{ blog.author }}
+        </p>
+
+        <p>
+            <strong>Category:</strong>
+            {{ blog.category }}
+        </p>
+
+        <p class="content">
+            {{ blog.content|truncatewords:30 }}
+        </p><br>
+
+
+         <p>👁️ {{ blog.views }} Views</p>
+        <p>💬 {{ blog.comment_set.count }} Comments</p><br>
+        <a class="btn"
+           href="/detail/{{ blog.id }}/">
+            Read More
+        </a>
+
+    </div>
+
+    {% empty %}
+
+    <div class="blog-card">
+        <h2>No Blogs Available</h2>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

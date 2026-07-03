@@ -1,0 +1,70 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="form-container">
+<form method="POST" enctype="multipart/form-data"></form>
+<label>Blog Image</label>
+<input type="file" name="image">
+    <h2>Add Blog</h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>Title</label>
+        <input type="text"
+               name="title"
+               required>
+
+        <label>Author</label>
+
+<select name="author">
+
+    {% for author in authors %}
+
+        <option value="{{ author.id }}">
+            {{ author.name }}
+        </option>
+
+    {% endfor %}
+
+</select>
+        <label>Category</label>
+
+        <select name="category" required>
+
+            {% for category in categories %}
+
+            <option value="{{ category.id }}">
+                {{ category.name }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <label>Content</label>
+
+        <textarea name="content"
+                  rows="6"
+                  required>
+        </textarea>
+
+        <div class="button-group">
+
+            <button type="submit">
+                Save Blog
+            </button>
+
+            <a href="/" class="back-btn">
+                Back
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

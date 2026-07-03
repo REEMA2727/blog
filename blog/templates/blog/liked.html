@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<h2>❤️ Liked Blogs</h2>
+
+{% for blog in blogs %}
+
+<div class="blog-card">
+
+    <h3>{{ blog.title }}</h3>
+
+    <p>{{ blog.author }}</p>
+
+    <p>{{ blog.category }}</p>
+
+    <a href="/unlike/{{ blog.id }}/"
+       class="delete-btn">
+
+       ❌ Remove
+
+    </a>
+
+</div>
+
+{% empty %}
+
+<h3>No liked blogs yet.</h3>
+
+{% endfor %}
+
+{% endblock %}

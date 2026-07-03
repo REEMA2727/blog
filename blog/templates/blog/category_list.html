@@ -1,0 +1,51 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>📂 Categories</h2>
+
+    <a href="/add-category/" class="btn">
+        ➕ Create Category
+    </a>
+
+    <br><br>
+
+    <div class="blog-grid">
+
+        {% for category in categories %}
+
+        <div class="blog-card">
+
+            <h3>
+                <a href="/category/{{ category.id }}/">
+                    📁 {{ category.name }}
+                </a>
+            </h3>
+
+            <br>
+
+            <a href="/delete-category/{{ category.id }}/"
+               class="delete-btn"
+               onclick="return confirm('Delete this category?')">
+                🗑 Delete
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <h3>No categories found</h3>
+
+        {% endfor %}
+
+    </div>
+
+    <br>
+
+    <a href="/" class="back-btn">⬅ Back</a>
+
+</div>
+
+{% endblock %}
